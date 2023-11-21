@@ -33,11 +33,18 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('People'),
-          centerTitle: true,
-        ),
-        body: FutureBuilder(
+      appBar: AppBar(
+        title: const Text('People'),
+        centerTitle: true,
+      ),
+      body: RefreshIndicator(
+        onRefresh: () async {
+          var users = await UserService().getUsers();
+          setState(() {
+            futureUsers = Future.value(users);
+          });
+        },
+        child: FutureBuilder(
           future: futureUsers,
           builder: (context, AsyncSnapshot snapshot) {
             if (snapshot.hasData) {
@@ -71,6 +78,8 @@ class _HomePageState extends State<HomePage> {
               return const Center(child: CircularProgressIndicator());
             }
           },
-        ));
+        ),
+      ),
+    );
   }
 }

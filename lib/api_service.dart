@@ -57,8 +57,8 @@ class Name {
 
 class UserService {
   Future<List<User>> getUsers() async {
-    final response = await http
-        .get(Uri.parse("https://randomuser.me/api/?results=50&seed=api"));
+    final response =
+        await http.get(Uri.parse("https://randomuser.me/api/?results=50"));
 
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
@@ -81,16 +81,16 @@ class OtherServices {
       Uri.parse('uri'),
     );
 
-    if(response.statusCode == 200) {
+    if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
       final List<User> users = [];
 
-      for(var i = 0; i< data['results'].length; i++) {
-        final entry  = data['results'][i];
+      for (var i = 0; i < data['results'].length; i++) {
+        final entry = data['results'][i];
         users.add(entry);
       }
       return users;
-    }else{
+    } else {
       throw Exception('Could not find');
     }
   }
