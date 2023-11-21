@@ -1,42 +1,39 @@
+import 'package:api/api_service.dart';
 import 'package:flutter/material.dart';
 
-class Profile extends StatefulWidget {
-  const Profile({super.key});
+class Profile extends StatelessWidget {
+  final User user;
+  const Profile({super.key, required this.user});
 
-  @override
-  State<Profile> createState() => _ProfileState();
-}
-
-class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Profile"),
+        title: Text('${user.name.first} ${user.name.last}'),
         centerTitle: true,
       ),
-      body: const Column(
+      body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Center(
               child: CircleAvatar(
             radius: 90,
-            backgroundImage: AssetImage('assets/copy.jpg'),
+            backgroundImage: NetworkImage(user.picture),
           )),
-           Column(
+          Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               ListTile(
                 title: Text.rich(
                   TextSpan(
                     text: "Name : ",
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.orange,
                     ),
                     children: [
                       TextSpan(
-                        text: "Yihun Alemayehu ",
-                        style: TextStyle(
+                        text: "${user.name.first} ${user.name.last}",
+                        style: const TextStyle(
                           color: Colors.blue,
                           fontWeight: FontWeight.bold,
                         ),
@@ -44,27 +41,27 @@ class _ProfileState extends State<Profile> {
                     ],
                   ),
                 ),
-                subtitle: Text("User Name"),
-                leading: Icon(
+                subtitle: const Text("User Name"),
+                leading: const Icon(
                   Icons.person,
                   color: Colors.blue,
                   size: 40,
                 ),
-                trailing: Icon(Icons.arrow_forward_ios),
+                trailing: const Icon(Icons.arrow_forward_ios),
                 // dense: true,
-                contentPadding: EdgeInsets.all(10),
+                contentPadding: const EdgeInsets.all(10),
               ),
               ListTile(
                 title: Text.rich(
                   TextSpan(
                     text: "Phone : ",
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.orange,
                     ),
                     children: [
                       TextSpan(
-                        text: "0982394038",
-                        style: TextStyle(
+                        text: user.phone,
+                        style: const TextStyle(
                           color: Colors.blue,
                           fontWeight: FontWeight.bold,
                         ),
@@ -72,27 +69,27 @@ class _ProfileState extends State<Profile> {
                     ],
                   ),
                 ),
-                subtitle: Text("User Phone"),
-                leading: Icon(
+                subtitle: const Text("User Phone"),
+                leading: const Icon(
                   Icons.phone,
                   color: Colors.blue,
                   size: 40,
                 ),
-                trailing: Icon(Icons.arrow_forward_ios),
+                trailing: const Icon(Icons.arrow_forward_ios),
                 // dense: true,
-                contentPadding: EdgeInsets.all(10),
+                contentPadding: const EdgeInsets.all(10),
               ),
               ListTile(
                 title: Text.rich(
                   TextSpan(
                     text: "Age : ",
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.orange,
                     ),
                     children: [
                       TextSpan(
-                        text: "20",
-                        style: TextStyle(
+                        text: '${user.age}',
+                        style: const TextStyle(
                           color: Colors.blue,
                           fontWeight: FontWeight.bold,
                         ),
@@ -100,27 +97,27 @@ class _ProfileState extends State<Profile> {
                     ],
                   ),
                 ),
-                subtitle: Text("User Age"),
-                leading: Icon(
+                subtitle: const Text("User Age"),
+                leading: const Icon(
                   Icons.person,
                   color: Colors.blue,
                   size: 40,
                 ),
-                trailing: Icon(Icons.arrow_forward_ios),
+                trailing: const Icon(Icons.arrow_forward_ios),
                 // dense: true,
-                contentPadding: EdgeInsets.all(10),
+                contentPadding: const EdgeInsets.all(10),
               ),
               ListTile(
                 title: Text.rich(
                   TextSpan(
                     text: "Address : ",
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.orange,
                     ),
                     children: [
                       TextSpan(
-                        text: "Sqqara/Giza/Egypt",
-                        style: TextStyle(
+                        text: '${user.city} , ${user.country}',
+                        style: const TextStyle(
                           color: Colors.blue,
                           fontWeight: FontWeight.bold,
                         ),
@@ -128,15 +125,15 @@ class _ProfileState extends State<Profile> {
                     ],
                   ),
                 ),
-                subtitle: Text("user address"),
-                leading: Icon(
+                subtitle: const Text("user address"),
+                leading: const Icon(
                   Icons.home,
                   color: Colors.blue,
                   size: 40,
                 ),
-                trailing: Icon(Icons.arrow_forward_ios),
+                trailing: const Icon(Icons.arrow_forward_ios),
                 // dense: true,
-                contentPadding: EdgeInsets.all(10),
+                contentPadding: const EdgeInsets.all(10),
               ),
             ],
           ),

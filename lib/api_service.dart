@@ -5,8 +5,18 @@ class User {
   final Name name;
   final String email;
   final String picture;
+  final String phone;
+  final int age;
+  final String city;
+  final String state;
+  final String country;
 
   const User({
+    required this.city,
+    required this.state,
+    required this.country,
+    required this.age,
+    required this.phone,
     required this.name,
     required this.email,
     required this.picture,
@@ -14,6 +24,11 @@ class User {
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
+      city: json['location']['city'] ?? '',
+      state: json['state'] ?? '',
+      country: json['country'] ?? '',
+      age: json['dob']['age'] ?? '',
+      phone: json['phone'] ?? '',
       email: json['email'] ?? '',
       picture: json['picture']['medium'] ?? '',
       name: Name.fromJson(
@@ -43,7 +58,7 @@ class Name {
 class UserService {
   Future<List<User>> getUsers() async {
     final response = await http
-        .get(Uri.parse("https://randomuser.me/api/?results=20&seed=api"));
+        .get(Uri.parse("https://randomuser.me/api/?results=50&seed=api"));
 
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);

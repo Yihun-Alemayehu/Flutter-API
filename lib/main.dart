@@ -34,7 +34,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Home Page'),
+          title: const Text('People'),
           centerTitle: true,
         ),
         body: FutureBuilder(
@@ -52,7 +52,9 @@ class _HomePageState extends State<HomePage> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const Profile(),
+                              builder: (context) => Profile(
+                                user: user,
+                              ),
                             ));
                       },
                     );
