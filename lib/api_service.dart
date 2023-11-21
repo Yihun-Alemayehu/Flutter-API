@@ -74,3 +74,24 @@ class UserService {
     }
   }
 }
+
+class OtherServices {
+  Future<List<User>> getServicer() async {
+    final response = await http.get(
+      Uri.parse('uri'),
+    );
+
+    if(response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      final List<User> users = [];
+
+      for(var i = 0; i< data['results'].length; i++) {
+        final entry  = data['results'][i];
+        users.add(entry);
+      }
+      return users;
+    }else{
+      throw Exception('Could not find');
+    }
+  }
+}
